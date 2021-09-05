@@ -6,6 +6,7 @@
    .node:  z-index: 350;
 
   #pieces: z-index: 500;
+  .piece:  z-index: 550;
 */
 
 body {
@@ -149,5 +150,10 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: pink;
+  background-image: url('../assets/sprites.png');
+  background-position: 0px 0px;
+  z-index: 550;
+
+  transition: top 1s, left 1s;
+  transition-timing-function: ease-in;
 }
