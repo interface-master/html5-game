@@ -10,4 +10,4 @@ var player1 = new PlayerPiece();
 currentPlayer = player1;
 
 // position player at lookout
-player1.place( map.nodes[0] );
+player1.appear( map.nodes[0] );

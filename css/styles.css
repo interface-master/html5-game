@@ -1,12 +1,14 @@
 /*
-  #map:    z-index: 100;
-  #map_#:  z-index: 200;
+  #map:      z-index: 100;
+  #map_#:    z-index: 200;
 
-  #nodes:  z-index: 300;
-   .node:  z-index: 350;
+  #nodes:    z-index: 300;
+   .node:    z-index: 350;
 
-  #pieces: z-index: 500;
-  .piece:  z-index: 550;
+  #pieces:   z-index: 500;
+  .piece:    z-index: 550;
+
+  #question: z-index: 800;
 */
 
 body {
@@ -156,4 +158,62 @@ body {
 
   transition: top 1s, left 1s;
   transition-timing-function: ease-in;
+}
+
+#question {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  width: 90%;
+  height: 90%;
+  z-index: 800;
+  background-color: rgba(255,255,255,0.9);
+  border: 10px solid rgba(0,0,0,0.5);
+  border-radius: 25px;
+  font-family: sans-serif;
+}
+
+#question .questionText {
+  font-size: 60px;
+  line-height: 70px;
+  text-align: center;
+  margin: 40px 0;
+}
+
+#question .problemText {
+  font-size: 40px;
+  line-height: 50px;
+  text-align: center;
+  font-family: monospace;
+  color: blue;
+}
+
+#question .options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: stretch;
+  padding: 0 50px;
+}
+
+#question .options .option {
+  display: block;
+  width: 130px;
+  height: 130px;
+  line-height: 130px;
+  font-size: 50px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+#question .options .option.wrong {
+  background-color: rgba(255,0,0,0.5);
 }

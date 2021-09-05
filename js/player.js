@@ -1,6 +1,9 @@
 var PlayerPiece = function( obj ) {
   this.div = obj;
   this.node = null;
+  this.animLength = 1000;
+  this.coins = 0;
+  this.stars = 0;
 
   this.initialize();
 }
@@ -11,16 +14,25 @@ PlayerPiece.prototype.initialize = function () {
   document.querySelector('#pieces').appendChild( this.div );
 };
 
+PlayerPiece.prototype.appear = function ( node ) {
+  // occupy node
+  this.node = node;
+  node.occupy();
+  this.moveTo( this.node.coordinates[0], this.node.coordinates[1] );
+}
+
 PlayerPiece.prototype.place = function ( node ) {
   // occupy node
   this.node = node;
   node.occupy();
   // move to node
+  this.animate();
   this.moveTo( this.node.coordinates[0], this.node.coordinates[1] );
+  // ask question
+  setTimeout( this.askMathQuestion, this.animLength );
 };
 
 PlayerPiece.prototype.moveTo = function ( x, y ) {
-  this.animate();
   var pieceWidth = this.div.offsetWidth;
   var nodeWidth = this.node.div.offsetWidth;
   var pieceHeight = this.div.offsetHeight;
@@ -44,5 +56,19 @@ PlayerPiece.prototype.animate = function () {
   setTimeout( function(){
     clearInterval( timer );
     piece.style.backgroundPositionX = -300+'px';
-  }, 1000 );
+  }, this.animLength );
+};
+
+PlayerPiece.prototype.askMathQuestion = function () {
+  // random question
+  var base = 9;
+  var x = Math.floor( Math.random() * base );
+  var y = Math.round( Math.random() * (base-x) );
+  var question = new Question({
+    question: "WHAT IS ",
+    problem: x + " + " + y + " = ",
+    options: "1|2|3|4|5|6|7|8|9|0",
+    answer: x+y
+  });
+
 };
