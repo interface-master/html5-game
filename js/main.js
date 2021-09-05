@@ -1,5 +1,2 @@
-function go() {
-  alert('hi');
-}
-
-go();
+var map = new Map();
+map.initialize();
