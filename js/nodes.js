@@ -2,6 +2,7 @@ var MapNode = function( x, y ) {
   this.coordinates = []; // x,y
   this.nodes = []; // MapNode[]
   this.div = null; //
+  this.title = "";
 
   this.initialize( x, y );
 }
@@ -27,6 +28,15 @@ MapNode.prototype.occupy = function () {
   }
 };
 
+MapNode.prototype.show = function () {
+  this.div.style.display = 'block';
+};
+
+MapNode.prototype.hide = function () {
+  this.div.style.display = 'none';
+};
+
+
 MapNode.prototype.initialize = function ( x, y ) {
   // create dom element
   this.div = document.createElement('div');
@@ -44,3 +54,24 @@ MapNode.prototype.initialize = function ( x, y ) {
     }
   } );
 };
+
+
+
+var DestinationNode = function( x, y ) {
+  MapNode.call( this, x, y );
+}
+DestinationNode.prototype = Object.create( MapNode.prototype );
+// DestinationNode.prototype.constructor = DestinationNode;
+
+DestinationNode.prototype.initialize = function( x, y ) {
+  MapNode.prototype.initialize.call( this, x, y );
+  this.div.className = 'destination node';
+}
+
+DestinationNode.prototype.setTitle = function( title ){
+  this.title = title;
+}
+
+DestinationNode.prototype.setVocab = function( ary ){
+  this.vocab = ary;
+}

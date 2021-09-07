@@ -4,6 +4,7 @@ var PlayerPiece = function( obj ) {
   this.animLength = 1000;
   this.coins = 0;
   this.stars = 0;
+  this.mission = null;
 
   this.initialize();
 }
@@ -29,7 +30,11 @@ PlayerPiece.prototype.place = function ( node ) {
   this.animate();
   this.moveTo( this.node.coordinates[0], this.node.coordinates[1] );
   // ask question
-  setTimeout( this.askMathQuestion, this.animLength );
+  if ( this.node instanceof DestinationNode ) {
+    setTimeout( this.askReadingQuestion, this.animLength );
+  } else if( this.node instanceof MapNode ) {
+    setTimeout( this.askMathQuestion, this.animLength );
+  }
 };
 
 PlayerPiece.prototype.moveTo = function ( x, y ) {
@@ -59,16 +64,47 @@ PlayerPiece.prototype.animate = function () {
   }, this.animLength );
 };
 
+
+PlayerPiece.prototype.setMission = function ( mission ) {
+  this.mission = mission;
+  if( !mission ) return;
+  var question = new Question({
+    type: 'mission',
+    question: 'FETCH',
+    problem: 'go to ' + mission.destination.title + ' and fetch:',
+    options: mission.fetch,
+    answer: ''
+  });
+};
+
+
 PlayerPiece.prototype.askMathQuestion = function () {
   // random question
   var base = 9;
   var x = Math.floor( Math.random() * base );
   var y = Math.round( Math.random() * (base-x) );
   var question = new Question({
-    question: "WHAT IS ",
-    problem: x + " + " + y + " = ",
-    options: "1|2|3|4|5|6|7|8|9|0",
+    type: 'math',
+    question: 'WHAT IS ',
+    problem: x + ' + ' + y + ' = ',
+    options: '1|2|3|4|5|6|7|8|9|0',
     answer: x+y
   });
-
 };
+
+PlayerPiece.prototype.askReadingQuestion = function () {
+  var str = '';
+  for( i = 0; i < currentPlayer.mission.destination.vocab.length; i++ ) {
+    str += currentPlayer.mission.destination.vocab[i];
+    if( i < currentPlayer.mission.destination.vocab.length-1 ) {
+      str += '|';
+    }
+  }
+  var question = new Question({
+    type: 'reading',
+    question: 'FIND',
+    problem: currentPlayer.mission.fetch,
+    options: str,
+    answer: currentPlayer.mission.fetch
+  });
+}

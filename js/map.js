@@ -21,8 +21,10 @@ MapPiece.prototype.toggle = function() {
   }
 }
 
+
 var Map = function() {
   this.pieces = [];
+  this.unlocked = [];
   this.nodes = [];
 }
 
@@ -37,6 +39,7 @@ Map.prototype.initialize = function() {
   this.pieces.push( new MapPiece( document.querySelector('#map_G') ) );
   this.pieces.push( new MapPiece( document.querySelector('#map_H') ) );
   this.pieces.push( new MapPiece( document.querySelector('#map_I') ) );
+
   // initialize map nodes
   //// left
   this.nodes.push( new MapNode(  253, 782 ) );
@@ -141,10 +144,45 @@ Map.prototype.initialize = function() {
   this.linkNodes( 39, 40 );
   this.linkNodes( 40, 41 );
 
-  console.log( this.nodes );
+  // activate locations
+  var cafe = new DestinationNode( 290, 434 );
+  cafe.setTitle( "Cafe" );
+  cafe.setVocab([
+    'tomato',
+    'sausage',
+    'rice',
+    'cutlet',
+    'chicken',
+    'soup',
+    'salad',
+    'potato',
+    'cucumber',
+    'noodles'
+  ]);
+  this.nodes.push( cafe );
+  this.linkNodes( 42, 14 );
+  this.linkNodes( 42, 15 );
+  this.unlock({ piece: this.pieces[3], node: this.nodes[42] });
+
+  var lookout = new DestinationNode( 110, 824 );
+  lookout.hide();
+  lookout.setTitle( "Lookout" );
+  lookout.setVocab([
+    'd',
+    'e',
+    'f'
+  ]);
+  this.nodes.push( lookout );
+  this.linkNodes( 43, 0 );
+  this.unlock({ piece: this.pieces[7], node: this.nodes[43] });
 };
 
 Map.prototype.linkNodes = function( a, b ) {
   this.nodes[a].link( this.nodes[b] );
   this.nodes[b].link( this.nodes[a] );
 }
+
+Map.prototype.unlock = function ( node ) {
+  this.unlocked.push( node );
+  node.piece.turnOn();
+};

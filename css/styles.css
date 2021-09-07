@@ -144,6 +144,13 @@ body {
   background: limegreen;
 }
 
+#nodes .destination.node {
+  background: rgba(0,0,255,0.5);
+}
+#nodes .destination.node.vacant {
+  background: rgba(0,0,255,0.9);
+}
+
 #pieces {
   z-index: 500;
 }
@@ -192,6 +199,10 @@ body {
   color: blue;
 }
 
+#question .problemText .option {
+  margin: auto;
+}
+
 #question .options {
   display: flex;
   flex-direction: row;
@@ -202,7 +213,7 @@ body {
   padding: 0 50px;
 }
 
-#question .options .option {
+#question .option {
   display: block;
   width: 130px;
   height: 130px;
@@ -214,6 +225,74 @@ body {
   margin: 10px;
 }
 
-#question .options .option.wrong {
+#question .option.wrong {
   background-color: rgba(255,0,0,0.5);
+}
+
+#question .food {
+  background-image: url('../assets/food_cafe.jpg');
+  width: 200px;
+  height: 200px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#question .food.tomato {
+  background-position: 0px 0px;
+}
+#question .food.sausage {
+  background-position: -200px 0px;
+}
+#question .food.rice {
+  background-position: -400px 0px;
+}
+#question .food.cutlet {
+  background-position: -600px 0px;
+}
+#question .food.chicken {
+  background-position: -800px 0px;
+}
+#question .food.soup {
+  background-position: 0px -200px;
+}
+#question .food.salad {
+  background-position: -200px -200px;
+}
+#question .food.potato {
+  background-position: -400px -200px;
+}
+#question .food.cucumber {
+  background-position: -600px -200px;
+}
+#question .food.noodles {
+  background-position: -800px -200px;
+}
+
+#question .options .reading {
+  width: 250px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 40px;
+}
+
+
+
+#question .buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: stretch;
+  padding: 200px 50px 0;
+}
+
+#question .buttons .button {
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+  width: 300px;
+  height: 100px;
+  background-color: limegreen;
 }
