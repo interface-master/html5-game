@@ -168,9 +168,16 @@ Map.prototype.initialize = function() {
   lookout.hide();
   lookout.setTitle( "Lookout" );
   lookout.setVocab([
-    'd',
-    'e',
-    'f'
+    'hat',
+    'coat',
+    'shoes',
+    'scarf',
+    'gloves',
+    'socks',
+    'pants',
+    'shirt',
+    'sweater',
+    'cap',
   ]);
   this.nodes.push( lookout );
   this.linkNodes( 43, 0 );

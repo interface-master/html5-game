@@ -199,10 +199,6 @@ body {
   color: blue;
 }
 
-#question .problemText .option {
-  margin: auto;
-}
-
 #question .options {
   display: flex;
   flex-direction: row;
@@ -229,51 +225,110 @@ body {
   background-color: rgba(255,0,0,0.5);
 }
 
-#question .food {
-  background-image: url('../assets/food_cafe.jpg');
+#question .options .reading ,
+#question .problemText .reading {
   width: 200px;
   height: 200px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  background-position: 200px 200px;
+  background-repeat: no-repeat;
 }
 
-#question .food.tomato {
+#question .reading.tomato {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: 0px 0px;
 }
-#question .food.sausage {
+#question .reading.sausage {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -200px 0px;
 }
-#question .food.rice {
+#question .reading.rice {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -400px 0px;
 }
-#question .food.cutlet {
+#question .reading.cutlet {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -600px 0px;
 }
-#question .food.chicken {
+#question .reading.chicken {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -800px 0px;
 }
-#question .food.soup {
+#question .reading.soup {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: 0px -200px;
 }
-#question .food.salad {
+#question .reading.salad {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -200px -200px;
 }
-#question .food.potato {
+#question .reading.potato {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -400px -200px;
 }
-#question .food.cucumber {
+#question .reading.cucumber {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -600px -200px;
 }
-#question .food.noodles {
+#question .reading.noodles {
+  background-image: url('../assets/food_cafe.jpg');
   background-position: -800px -200px;
 }
 
-#question .options .reading {
+#question .reading.hat {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: 0px 0px;
+}
+#question .reading.coat {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -200px 0px;
+}
+#question .reading.shoes {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -400px 0px;
+}
+#question .reading.scarf {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -600px 0px;
+}
+#question .reading.gloves {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -800px 0px;
+}
+#question .reading.socks {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: 0px -200px;
+}
+#question .reading.pants {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -200px -200px;
+}
+#question .reading.shirt {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -400px -200px;
+}
+#question .reading.sweater {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -600px -200px;
+}
+#question .reading.cap {
+  background-image: url('../assets/clothes_lookout.jpg');
+  background-position: -800px -200px;
+}
+
+#question.reading .options .reading {
   width: 250px;
   height: 70px;
   line-height: 70px;
-  font-size: 40px;
+  font-size: 30px;
+  text-transform: uppercase;
+  background-position: 200px 200px;
+}
+
+#question.mission .problemText .option.reading ,
+#question.reading .problemText .option.reading {
+  margin: auto;
 }
 
 

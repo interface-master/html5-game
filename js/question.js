@@ -8,24 +8,39 @@ var Question = function( obj ) {
 Question.prototype.ask = function () {
   var self = this;
   // show popup
+  this.div.className = '';
   this.div.style.display = 'block';
   // render text
   this.div.querySelector('.questionText').textContent = this.q.question;
-  if( this.q.type == 'math' || this.q.type == 'mission' ) {
+  //// mission
+  if( this.q.type == 'mission' ) {
+    this.div.classList.add('mission');
     this.div.querySelector('.problemText').textContent = this.q.problem;
+  //// math
+  } else if( this.q.type == 'math' ) {
+    this.div.querySelector('.problemText').textContent = this.q.problem;
+  //// find a word
   } else if ( this.q.type == 'reading' ) {
+    this.div.classList.add('reading');
     var pic = document.createElement('div');
-    pic.className = 'option food ' + this.q.problem;
+    pic.className = 'option reading ' + this.q.problem;
     this.div.querySelector('.problemText').appendChild( pic );
+  } else if ( this.q.type == '' ) {
+
   }
   // render options
   var opt_container = this.div.querySelector('.options');
   var options = this.q.options.split('|');
+
+  if( this.q.type == 'reading' ) {
+    shuffle(options);
+  }
+
   for( i = 0; i < options.length; i++ ) {
     var li = document.createElement('li');
     li.className = 'option';
     if( this.q.type == 'mission' ) {
-      li.className += ' ' + 'food '  + options[i];
+      li.className += ' ' + 'reading '  + options[i];
     } else if( this.q.type == 'math' ) {
       li.textContent = options[i];
     } else if( this.q.type == 'reading' ) {
@@ -70,17 +85,16 @@ Question.prototype.done = function () {
     window.currentPlayer.coins += 1;
   } else if( this.q.type == 'reading' ) {
     window.currentPlayer.stars += 1;
-    // get random location that's not this one
-    var available = [];
-    for( i = 0; i < map.unlocked.length; i++ ) {
-      if( map.unlocked[i].node != currentPlayer.mission.destination ) {
-        available.push( map.unlocked[i] );
-      }
-    }
-    random = Math.floor( Math.random() * available.length );
-    randomNode = available[ random ];
-    // complete mission and assign new one
+    // complete mission
     window.game.completeMission();
-    window.game.newMission( randomNode.node );
   }
 };
+
+function shuffle( array ) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}

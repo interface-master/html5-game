@@ -31,13 +31,24 @@ PlayerPiece.prototype.place = function ( node ) {
   this.moveTo( this.node.coordinates[0], this.node.coordinates[1] );
   // ask question
   if ( this.node instanceof DestinationNode ) {
-    setTimeout( this.askReadingQuestion, this.animLength );
+    //// landed on a destination node
+    if( this.node.title == 'Lookout' ) {
+      setTimeout( this.askReadingQuestion, this.animLength );
+    } else if( this.node.title == 'Cafe' ) {
+      setTimeout( this.askReadingQuestion, this.animLength );
+    }
   } else if( this.node instanceof MapNode ) {
-    setTimeout( this.askMathQuestion, this.animLength );
+    //// landed on a map node
+    // setTimeout( this.askMathQuestion, this.animLength ); // TODO: uncomment this
   }
 };
 
 PlayerPiece.prototype.moveTo = function ( x, y ) {
+  // turn player to face the direction of movement
+  var oldX = parseInt(this.div.style.left);
+  if( oldX < x ) this.turnRight();
+  if( oldX > x ) this.turnLeft();
+  // move to new location
   var pieceWidth = this.div.offsetWidth;
   var nodeWidth = this.node.div.offsetWidth;
   var pieceHeight = this.div.offsetHeight;
@@ -45,6 +56,14 @@ PlayerPiece.prototype.moveTo = function ( x, y ) {
   this.div.style.left = (x - pieceWidth/2 + nodeWidth/2)+'px';
   this.div.style.top = (y - nodeHeight/2)+'px';
 };
+
+PlayerPiece.prototype.turnLeft = function () {
+  this.div.style.backgroundPositionY = '0px';
+}
+
+PlayerPiece.prototype.turnRight = function () {
+  this.div.style.backgroundPositionY = '-100px';
+}
 
 PlayerPiece.prototype.animate = function () {
   var x = 0;
@@ -57,7 +76,7 @@ PlayerPiece.prototype.animate = function () {
       x = 1;
       piece.style.backgroundPositionX = -100+'px';
     }
-  }, 250 );
+  }, 200 );
   setTimeout( function(){
     clearInterval( timer );
     piece.style.backgroundPositionX = -300+'px';
@@ -102,6 +121,18 @@ PlayerPiece.prototype.askReadingQuestion = function () {
   }
   var question = new Question({
     type: 'reading',
+    question: 'FIND',
+    problem: currentPlayer.mission.fetch,
+    options: str,
+    answer: currentPlayer.mission.fetch
+  });
+}
+
+PlayerPiece.prototype.askWordSearchQuestion = function () {
+  var str = '';
+
+  var question = new Question({
+    type: 'wordsearch',
     question: 'FIND',
     problem: currentPlayer.mission.fetch,
     options: str,
