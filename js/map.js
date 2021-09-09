@@ -193,3 +193,19 @@ Map.prototype.unlock = function ( node ) {
   this.unlocked.push( node );
   node.piece.turnOn();
 };
+
+Map.prototype.discover = function( stars ) {
+  if( stars >= 3 ) {
+    // farm is piece 0
+    if( !window.map.pieces[0].on ) {
+      var farm = new DestinationNode( 177, 207 );
+      farm.hide();
+      farm.setTitle( TEXT.location.farm );
+      farm.setVocab( TEXT.vocab.farm.lvl1 );
+      this.nodes.push( farm );
+      this.linkNodes( 44, 10 );
+      this.linkNodes( 44, 11 );
+      this.unlock({ piece: this.pieces[0], node: this.nodes[44] });
+    }
+  }
+}

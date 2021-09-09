@@ -178,7 +178,7 @@ body {
   width: 90%;
   height: 90%;
   z-index: 800;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,0.90);
   border: 10px solid rgba(0,0,0,0.5);
   border-radius: 25px;
   font-family: sans-serif;
@@ -317,13 +317,57 @@ body {
   background-position: -800px -200px;
 }
 
+
+#question .reading.watermelon {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: 0px 0px;
+}
+#question .reading.banana {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -200px 0px;
+}
+#question .reading.grames {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -400px 0px;
+}
+#question .reading.pear {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -600px 0px;
+}
+#question .reading.strawberry {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -800px 0px;
+}
+#question .reading.raspberry {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: 0px -200px;
+}
+#question .reading.peach {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -200px -200px;
+}
+#question .reading.cherry {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -400px -200px;
+}
+#question .reading.blueberry {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -600px -200px;
+}
+#question .reading.apple {
+  background-image: url('../assets/fruit_farm.jpg');
+  background-position: -800px -200px;
+}
+
 #question.reading .options .reading {
   width: 250px;
   height: 70px;
   line-height: 70px;
   font-size: 30px;
   text-transform: uppercase;
+  letter-spacing: 1px;
   background-position: 200px 200px;
+  background-color: rgba(255,255,255,1);
 }
 
 #question.mission .problemText .option.reading ,

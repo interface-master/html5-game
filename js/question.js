@@ -80,11 +80,14 @@ Question.prototype.done = function () {
   this.div.querySelector('.problemText').textContent = '';
   this.div.querySelector('.options').textContent = '';
   this.div.querySelector('.buttons').textContent = '';
+  this.div.querySelector('.buttons').style.display = 'none';
   // award points
   if( this.q.type == 'math' ) {
     window.currentPlayer.coins += 1;
   } else if( this.q.type == 'reading' ) {
     window.currentPlayer.stars += 1;
+    // unlock new location
+    window.map.discover( window.currentPlayer.stars );
     // complete mission
     window.game.completeMission();
   }
