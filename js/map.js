@@ -146,19 +146,8 @@ Map.prototype.initialize = function() {
 
   // activate locations
   var cafe = new DestinationNode( 290, 434 );
-  cafe.setTitle( "Cafe" );
-  cafe.setVocab([
-    'tomato',
-    'sausage',
-    'rice',
-    'cutlet',
-    'chicken',
-    'soup',
-    'salad',
-    'potato',
-    'cucumber',
-    'noodles'
-  ]);
+  cafe.setTitle( TEXT.location.cafe );
+  cafe.setVocab( TEXT.vocab.cafe.lvl1 );
   this.nodes.push( cafe );
   this.linkNodes( 42, 14 );
   this.linkNodes( 42, 15 );
@@ -166,19 +155,8 @@ Map.prototype.initialize = function() {
 
   var lookout = new DestinationNode( 110, 824 );
   lookout.hide();
-  lookout.setTitle( "Lookout" );
-  lookout.setVocab([
-    'hat',
-    'coat',
-    'shoes',
-    'scarf',
-    'gloves',
-    'socks',
-    'pants',
-    'shirt',
-    'sweater',
-    'cap',
-  ]);
+  lookout.setTitle( TEXT.location.base );
+  lookout.setVocab( TEXT.vocab.base.lvl1 );
   this.nodes.push( lookout );
   this.linkNodes( 43, 0 );
   this.unlock({ piece: this.pieces[7], node: this.nodes[43] });

@@ -32,14 +32,16 @@ PlayerPiece.prototype.place = function ( node ) {
   // ask question
   if ( this.node instanceof DestinationNode ) {
     //// landed on a destination node
-    if( this.node.title == 'Lookout' ) {
+    if( this.node.title == TEXT.location.base ) {
       setTimeout( this.askReadingQuestion, this.animLength );
-    } else if( this.node.title == 'Cafe' ) {
+    } else if( this.node.title == TEXT.location.cafe ) {
+      setTimeout( this.askReadingQuestion, this.animLength );
+    } else if( this.node.title == TEXT.location.farm ) {
       setTimeout( this.askReadingQuestion, this.animLength );
     }
   } else if( this.node instanceof MapNode ) {
     //// landed on a map node
-    // setTimeout( this.askMathQuestion, this.animLength ); // TODO: uncomment this
+    setTimeout( this.askMathQuestion, this.animLength ); // TODO: uncomment this
   }
 };
 
@@ -89,9 +91,10 @@ PlayerPiece.prototype.setMission = function ( mission ) {
   if( !mission ) return;
   var question = new Question({
     type: 'mission',
-    question: 'FETCH',
-    problem: 'go to ' + mission.destination.title + ' and fetch:',
+    question: TEXT.mission.fetch.title,
+    problem: TEXT.mission.fetch.problem_1 + mission.destination.title + TEXT.mission.fetch.problem_2,
     options: mission.fetch,
+    classes: mission.class,
     answer: ''
   });
 };
@@ -104,7 +107,7 @@ PlayerPiece.prototype.askMathQuestion = function () {
   var y = Math.round( Math.random() * (base-x) );
   var question = new Question({
     type: 'math',
-    question: 'WHAT IS ',
+    question: TEXT.mission.math.title,
     problem: x + ' + ' + y + ' = ',
     options: '1|2|3|4|5|6|7|8|9|0',
     answer: x+y
@@ -113,17 +116,22 @@ PlayerPiece.prototype.askMathQuestion = function () {
 
 PlayerPiece.prototype.askReadingQuestion = function () {
   var str = '';
-  for( i = 0; i < currentPlayer.mission.destination.vocab.length; i++ ) {
-    str += currentPlayer.mission.destination.vocab[i];
-    if( i < currentPlayer.mission.destination.vocab.length-1 ) {
+  var cls = '';
+  var keys = Object.keys( currentPlayer.mission.destination.vocab );
+  for( i = 0; i < keys.length; i++ ) {
+    cls += keys[i];
+    str += currentPlayer.mission.destination.vocab[ keys[i] ];
+    if( i < keys.length-1 ) {
+      cls += '|';
       str += '|';
     }
   }
   var question = new Question({
     type: 'reading',
-    question: 'FIND',
-    problem: currentPlayer.mission.fetch,
+    question: TEXT.mission.fetch.title,
+    problem: currentPlayer.mission.class,
     options: str,
+    classes: cls,
     answer: currentPlayer.mission.fetch
   });
 }

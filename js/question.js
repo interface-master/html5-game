@@ -16,6 +16,7 @@ Question.prototype.ask = function () {
   if( this.q.type == 'mission' ) {
     this.div.classList.add('mission');
     this.div.querySelector('.problemText').textContent = this.q.problem;
+    this.div.querySelector('.buttons').style.display = 'flex';
   //// math
   } else if( this.q.type == 'math' ) {
     this.div.querySelector('.problemText').textContent = this.q.problem;
@@ -31,6 +32,7 @@ Question.prototype.ask = function () {
   // render options
   var opt_container = this.div.querySelector('.options');
   var options = this.q.options.split('|');
+  if( this.q.classes != null ) var classes = this.q.classes.split('|');
 
   if( this.q.type == 'reading' ) {
     shuffle(options);
@@ -40,12 +42,12 @@ Question.prototype.ask = function () {
     var li = document.createElement('li');
     li.className = 'option';
     if( this.q.type == 'mission' ) {
-      li.className += ' ' + 'reading '  + options[i];
+      li.className += ' ' + 'reading '  + classes[i];
     } else if( this.q.type == 'math' ) {
       li.textContent = options[i];
     } else if( this.q.type == 'reading' ) {
       li.textContent = options[i];
-      li.className += ' ' + 'reading '  + options[i];
+      li.className += ' ' + 'reading '  + classes[i];
     }
     li.addEventListener( 'touchend', function( e ){
       var x = e.currentTarget.textContent;
@@ -61,10 +63,12 @@ Question.prototype.ask = function () {
       }
     } );
     opt_container.appendChild( li );
+  }
+  if( this.q.type == 'mission' ) {
     // dismiss button
     var button = document.createElement('div');
     button.className = 'button';
-    button.textContent = 'OK';
+    button.textContent = TEXT.ok;
     this.div.querySelector('.buttons').appendChild( button );
     button.addEventListener( 'touchend', function(){
       self.done();
