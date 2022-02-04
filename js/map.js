@@ -186,4 +186,18 @@ Map.prototype.discover = function( stars ) {
       this.unlock({ piece: this.pieces[0], node: this.nodes[44] });
     }
   }
+  if( stars >= 3 ) {
+    // farm is piece 0
+    if( !window.map.pieces[8].on ) {
+      var beach = new DestinationNode( 177, 207 );
+      beach.hide();
+      beach.setTitle( TEXT.location.farm );
+      beach.setVocab( TEXT.vocab.farm.lvl1 );
+      this.nodes.push( beach );
+      this.linkNodes( 45, 10 );
+      this.linkNodes( 45, 11 );
+      this.unlock({ piece: this.pieces[8], node: this.nodes[45] });
+    }
+  }
+
 }

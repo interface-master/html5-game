@@ -41,7 +41,7 @@ PlayerPiece.prototype.place = function ( node ) {
     }
   } else if( this.node instanceof MapNode ) {
     //// landed on a map node
-    setTimeout( this.askMathQuestion, this.animLength ); // TODO: uncomment this
+    // setTimeout( this.askMathQuestion, this.animLength ); // TODO: uncomment this
   }
 };
 

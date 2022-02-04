@@ -115,7 +115,7 @@ body {
   left: 0px;
 }
 #map_I {
-  background-image: url('../assets/map_A.png');
+  background-image: url('../assets/map_I.png');
   width: 368px;
   height: 511px;
   top: 449px;
@@ -221,10 +221,6 @@ body {
   margin: 10px;
 }
 
-#question .option.wrong {
-  background-color: rgba(255,0,0,0.5);
-}
-
 #question .options .reading ,
 #question .problemText .reading {
   width: 200px;
@@ -326,7 +322,7 @@ body {
   background-image: url('../assets/fruit_farm.jpg');
   background-position: -200px 0px;
 }
-#question .reading.grames {
+#question .reading.grapes {
   background-image: url('../assets/fruit_farm.jpg');
   background-position: -400px 0px;
 }
@@ -375,7 +371,10 @@ body {
   margin: auto;
 }
 
-
+#question .wrong {
+  background-image: none !important;
+  background-color: rgba(255,0,0,0.5) !important;
+}
 
 #question .buttons {
   display: flex;
